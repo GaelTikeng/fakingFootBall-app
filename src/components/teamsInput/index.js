@@ -123,14 +123,14 @@ export default function SelectTeam() {
               placeholder="Enter score"
               style={{ padding: "5px" }}
             />
-            <ul style={{color:"#fff", listStyle:'none'}}>
+            {/* <ul style={{color:"#fff", listStyle:'none'}}>
               {countries.map((select, index) => (
                 <li key={index}>
                   <img style={{wifth:'20px', height:'20px'}} src={select.flag} alt="flag"/>
                   | {select.country}
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
           <div className="clubs-side">
             <p>Team 2</p>
