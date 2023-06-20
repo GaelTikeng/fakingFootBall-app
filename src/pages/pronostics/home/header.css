@@ -21,3 +21,25 @@ h2 {
   gap: 1rem;
   margin: auto 0;
 }
+
+@media screen and (max-width: 768px) {
+  .header {
+    width: 98%;
+    margin: 0 auto;
+  }
+
+  .nav-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  h2 {
+    color: red;
+    flex: 1;
+  }
+
+  .about {
+    width: 100%;
+  }
+}

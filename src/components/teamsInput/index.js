@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Select from "react-select";
 import "./teamsInput.css";
 
 export default function SelectTeam() {
@@ -64,6 +63,7 @@ export default function SelectTeam() {
 
   const handleChange3 = (e) => {
     setScoreClub1(e.target.value);
+    console.log(scoreClub1);
   };
 
   const handleChange4 = (e) => {
@@ -71,32 +71,21 @@ export default function SelectTeam() {
   };
 
   const handleClick = () => {
-    // localStorage.setItem("contry1", JSON.stringify(selectTeam1));
-    // localStorage.setItem("contry2", JSON.stringify(selectTeam2));
-    // localStorage.setItem("club1", JSON.stringify(selectedClub1));
-    // localStorage.setItem("club2", JSON.stringify(selectedClub2));
-    // localStorage.setItem("score1", JSON.stringify(scoreCountry1));
-    // localStorage.setItem("score2", JSON.stringify(scoreCountry2));
-    // localStorage.setItem("score3", JSON.stringify(scoreClub1));
-    // localStorage.setItem("score4", JSON.stringify(scoreClub2));
-    // console.log(scoreClub1);
+    localStorage.setItem("score1", JSON.stringify(scoreCountry1));
+    localStorage.setItem("score2", JSON.stringify(scoreCountry2));
+    localStorage.setItem("score3", JSON.stringify(scoreClub1));
+    localStorage.setItem("score4", JSON.stringify(scoreClub2));
+    console.log(scoreClub1);
+    console.log(scoreClub2);
   
     const teams = JSON.parse(localStorage.getItem('teams'));
 
     if(!teams || !teams.team1 || !teams.team2) {
       return;
     }
-    
     navigate("/TeamCart");
   };
 
-  const renderImage = (data) => {
-    return (
-      <div>
-        <img src={data} alt="country flag" />
-      </div>
-    );
-  };
 
   useEffect(() => {
     fetch("footBallTeams.json", {
@@ -115,53 +104,34 @@ export default function SelectTeam() {
       .catch((err) => console.log("error", err));
   }, []);
   // console.log('names of club of gael', clubs)
-  console.log("names of contries", clubs);
+  console.log("names of clubs", clubs);
 
   return (
     <div style={{ paddingBottom: "15px" }}>
-      <div style={{ width: "60%", margin: "0 auto" }}>
-        <h3 style={{ color: "#fff", textAlign: "center" }}>
+      <div className="all-teams">
+        <h3 className="first-h3">
           Select team Country
         </h3>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="clubs">
           <div className="clubs-side">
             <p>Team 1</p>
             <input
               type="number"
               onChange={handleChange1}
               placeholder="Enter score"
-              style={{ padding: "5px" }}
             />
             <div
-              style={{
-                color: "#fff",
-                padding: "10px",
-                height: "500px",
-                overflow: "auto",
-                borderRadius: "10px",
-                boxShadow: "1px 1px 10px #fff",
-                border: "1px solid #f1f1f1",
-              }}
+              className="selected-club"
             >
               {countries.map((select, index) => (
                 <div onClick={() => handleSelectTeam1(select)}>
                   <img
-                    style={{
-                      wifth: "40px",
-                      height: "30px",
-                      cursor: "pointer",
-                      display: "flex",
-                      justifyContent: "center",
-                      margin: "0 auto",
-                    }}
+                    className="image"
                     src={select.flag}
                     alt="flag"
                   />
                   <p
                     key={index}
-                    style={{
-                      textAlign: "center",
-                    }}
                   >
                     {select.country}
                   </p>
@@ -176,30 +146,14 @@ export default function SelectTeam() {
               onChange={handleChange2}
               type="number"
               placeholder="Enter score"
-              style={{ padding: "5px" }}
             />
             <div
-              style={{
-                color: "#fff",
-                padding: "10px",
-                height: "500px",
-                overflow: "auto",
-                borderRadius: "10px",
-                boxShadow: "1px 1px 10px #fff",
-                border: "1px solid #f1f1f1",
-              }}
+              className="selected-club"
             >
               {countries.map((select, index) => (
                 <div onClick={() => handleSelectTeam2(select)}>
                   <img
-                    style={{
-                      wifth: "40px",
-                      height: "30px",
-                      cursor: "pointer",
-                      display: "flex",
-                      justifyContent: "center",
-                      margin: "0 auto",
-                    }}
+                    className="image"
                     src={select.flag}
                     alt="flag"
                   />
@@ -229,46 +183,27 @@ export default function SelectTeam() {
         </div>
 
         <h3>Select Club</h3>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="clubs">
           <div className="clubs-side">
             <p>Team 1</p>
             <input
               onChange={handleChange3}
               type="number"
               placeholder="Enter score"
-              style={{ padding: "5px" }}
             />
             <div
-              style={{
-                color: "#fff",
-                padding: "10px",
-                height: "500px",
-                width:'300px',
-                overflow: "auto",
-                borderRadius: "10px",
-                boxShadow: "1px 1px 10px #fff",
-                border: "1px solid #f1f1f1",
-              }}
+              className="selected-club"
             >
               {clubs.map((option, index) => (
                 <div onClick={() => handleClub1(option)}>
                   <img
-                    style={{
-                      wifth: "50px",
-                      height: "40px",
-                      cursor: "pointer",
-                      display: "flex",
-                      justifyContent: "center",
-                      margin: "0 auto",
-                    }}
+                    className="image"
+                    key={index}
                     src={option.url}
                     alt="flag"
                   />
                   <p
                     key={index}
-                    style={{
-                      textAlign: "center",
-                    }}
                   >
                     {option.name}
                   </p>
@@ -284,19 +219,9 @@ export default function SelectTeam() {
               onChange={handleChange4}
               type="number"
               placeholder="Enter score"
-              style={{ padding: "5px" }}
             />
             <div
-              style={{
-                color: "#fff",
-                padding: "10px",
-                height: "500px",
-                width:'300px',
-                overflow: "auto",
-                borderRadius: "10px",
-                boxShadow: "1px 1px 10px #fff",
-                border: "1px solid #f1f1f1",
-              }}
+              className="selected-club"
             >
               {clubs.map((option, index) => (
                 <div onClick={() => handleClub2(option)}>
@@ -309,6 +234,7 @@ export default function SelectTeam() {
                       justifyContent: "center",
                       margin: "0 auto",
                     }}
+                    key={index}
                     src={option.url}
                     alt="flag"
                   />

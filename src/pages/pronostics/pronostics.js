@@ -18,6 +18,8 @@ export default function TeamCart() {
     quality: 1.0,
   });
 
+  console.log("teamCountry", teamCountry);
+
   const download = (image, { name = "TeamTicket", extension = "jpg" } = {}) => {
     const a = document.createElement("a");
     a.href = image;
@@ -30,8 +32,14 @@ export default function TeamCart() {
   };
 
   const handleClick = () => {
-    console.log("teamCountry", teamCountry)
-  }
+    console.log("teamCountry", teamCountry);
+  };
+
+  
+  console.log(pickedClub);
+  useEffect(() => {
+    console.log(teamCountry);
+  },[])
 
   return (
     <div className="content">
@@ -46,47 +54,94 @@ export default function TeamCart() {
         }}
         ref={ref}
       >
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <p>Home country</p>
+        <div style={{ display: "flex", justifyContent: "space-around"}}>
+          <p style={{width:'50%'}}>Home country</p>
           <p>Away country</p>
         </div>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          {/* <p>{countryTeam1}</p> */}
-          <p
-            style={{
-              background: "#0f1127ce",
-              padding: "10px",
-              borderRadius: "5px",
-              textAlign: "center",
-            }}
-          >
-            <b>
-              {scoreCountry1} - <b>{scoreCountry2}</b>
-            </b>
-          </p>
-          {/* <p>{countryTeam2}</p> */}
+          <div>
+            <img
+              style={{
+                width:'60px',
+                height:'50px',
+              }}
+              src={teamCountry.team1.flag} alt='fag'
+            />
+            <p>{teamCountry.team1.country}</p>
+          </div>
+          
+          <div>
+            <p
+              style={{
+                background: "#0f1127ce",
+                padding: "10px",
+                borderRadius: "5px",
+                textAlign: "center",
+                height:'20px',
+              }}
+            >
+              <b>
+                {scoreCountry1} - <b>{scoreCountry2}</b>
+              </b>
+            </p>
+            <small style={{color:'#fff'}}>Full Time</small>
+          </div>
+          <div>
+            <img
+              src={teamCountry.team2.flag}
+              style={{
+                width:'60px',
+                height:'50px'
+              }}
+            />
+            <p>{teamCountry.team2.country}</p>
+          </div>
         </div>
 
         <hr></hr>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <p>Home</p>
+          <p style={{width:'50%'}}>Home</p>
           <p>Away</p>
         </div>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          {/* <p>{clubTeam1}</p> */}
-          <p
-            style={{
-              background: "#0f1127ce",
-              padding: "10px",
-              borderRadius: "5px",
-              textAlign: "center",
-            }}
-          >
-            <b>
-              {scoreClub1} - <b>{scoreClub2}</b>
-            </b>
-          </p>
-          {/* <p>{clubTeam2}</p> */}
+          <div>
+            <img
+              style={{
+                marginRight:'50px',
+                width:'60px',
+                height:'50px',
+              }}
+              src={pickedClub.club1.url} alt='fag'
+            />
+            <p>{pickedClub.club1.name}</p>
+          </div>
+          
+          <div>
+            <p
+              style={{
+                background: "#0f1127ce",
+                padding: "10px",
+                borderRadius: "5px",
+                textAlign: "center",
+                height:'20px',
+              }}
+            >
+              <b>
+                {scoreClub1} - <b>{scoreClub2}</b>
+              </b>
+            </p>
+            <small style={{color:'#fff'}}>Full Time</small>
+          </div>
+          <div>
+            <img
+              src={pickedClub.club2.url}
+              style={{
+                width:'60px',
+                height:'50px'
+              }}
+            />
+            <p>{pickedClub.club2.name}</p>
+          </div>
         </div>
 
         <button
@@ -102,9 +157,9 @@ export default function TeamCart() {
             margin: "0 auto",
             display: "flex",
             button: "0",
-            textAlign:'center',
+            textAlign: "center",
           }}
-          onClick={() => handleClick()}
+          onClick={() => downloadScreenshot()}
         >
           Download score
         </button>
