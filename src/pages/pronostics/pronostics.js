@@ -1,14 +1,12 @@
-import React, { useState, useContext, createRef } from "react";
+import React, { useState, useContext, createRef, useEffect } from "react";
 import { createFileName, useScreenshot } from "use-react-screenshot";
 import "./pronostic.css";
 import { Context } from "../../utiles/Context";
 
 export default function TeamCart() {
   const {
-    clubTeam1,
-    clubTeam2,
-    countryTeam1,
-    countryTeam2,
+    teamCountry,
+    pickedClub,
     scoreClub1,
     scoreClub2,
     scoreCountry1,
@@ -31,6 +29,10 @@ export default function TeamCart() {
     takeScreenShot(ref.current).then(download);
   };
 
+  const handleClick = () => {
+    console.log("teamCountry", teamCountry)
+  }
+
   return (
     <div className="content">
       <h1 style={{ textAlign: "center" }}>Team cart</h1>
@@ -49,7 +51,7 @@ export default function TeamCart() {
           <p>Away country</p>
         </div>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <p>{countryTeam1}</p>
+          {/* <p>{countryTeam1}</p> */}
           <p
             style={{
               background: "#0f1127ce",
@@ -62,7 +64,7 @@ export default function TeamCart() {
               {scoreCountry1} - <b>{scoreCountry2}</b>
             </b>
           </p>
-          <p>{countryTeam2}</p>
+          {/* <p>{countryTeam2}</p> */}
         </div>
 
         <hr></hr>
@@ -71,7 +73,7 @@ export default function TeamCart() {
           <p>Away</p>
         </div>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <p>{clubTeam1}</p>
+          {/* <p>{clubTeam1}</p> */}
           <p
             style={{
               background: "#0f1127ce",
@@ -84,7 +86,7 @@ export default function TeamCart() {
               {scoreClub1} - <b>{scoreClub2}</b>
             </b>
           </p>
-          <p>{clubTeam2}</p>
+          {/* <p>{clubTeam2}</p> */}
         </div>
 
         <button
@@ -102,7 +104,7 @@ export default function TeamCart() {
             button: "0",
             textAlign:'center',
           }}
-          onClick={downloadScreenshot}
+          onClick={() => handleClick()}
         >
           Download score
         </button>
