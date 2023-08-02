@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "./teamsInput.css";
 
 export default function SelectTeam() {
-  const [selectTeam1, setSelectTeam1] = useState(null);
-  const [selectTeam2, setSelectTeam2] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
+  // const [selectTeam1, setSelectTeam1] = useState(null);
+  // const [selectTeam2, setSelectTeam2] = useState(null);
   const [selectedClub1, setSelectedClub1] = useState(null);
   const [selectedClub2, setSelectedClub2] = useState(null);
   const [scoreCountry1, setScoreCountry1] = useState("");
@@ -12,7 +13,10 @@ export default function SelectTeam() {
   const [scoreClub1, setScoreClub1] = useState("");
   const [scoreClub2, setScoreClub2] = useState("");
   const [clubs, setClubs] = useState([]);
+  const [alsoClubs, setAlsoClubs] = useState([]);
   const [countries, setCountries] = useState([]);
+  const [alsoCountries, setAlsoCountries] = useState([]);
+  const [filterTeam, setFilterTeam] = useState("");
   const navigate = useNavigate();
 
   const handleSelectTeam1 = (team1) => {
@@ -54,7 +58,6 @@ export default function SelectTeam() {
 
   const handleChange1 = (event) => {
     setScoreCountry1(event.target.value);
-    console.log(scoreCountry1);
   };
 
   const handleChange2 = (event) => {
@@ -69,6 +72,26 @@ export default function SelectTeam() {
   const handleChange4 = (e) => {
     setScoreClub2(e.target.value);
   };
+
+  // const handleSearch = (event) => {
+  //   // setSearchInput(event.target.value)
+  //   if (searchInput === '') {
+  //     setCountries(alsoCountries)
+  //   } else {
+  //     const filterElement = countries.filter(item => item.contry.toLowerCase().includes(searchInput));
+  //     setCountries(filterElement)
+  //   }
+  //   setFilterTeam(searchInput)
+    
+    
+
+  //   setSearchInput(e.target.value);
+  // }
+  // if (searchInput.length > 0) {
+  //   clubs.filter((club) => {
+  //     return club.name.march(searchInput);
+  //   });
+  // }
 
   const handleClick = () => {
     localStorage.setItem("score1", JSON.stringify(scoreCountry1));
@@ -86,6 +109,9 @@ export default function SelectTeam() {
     navigate("/TeamCart");
   };
 
+  // const handleSearch = () => {
+
+  // }
 
   useEffect(() => {
     fetch("footBallTeams.json", {
@@ -97,11 +123,13 @@ export default function SelectTeam() {
       .then((response) => response.json())
       .then((data) => {
         setClubs(data.clubs);
+        setAlsoClubs(data.clubs);
         setCountries(data.countries);
+        setAlsoCountries(data.countries);
         // console.log('names of clubs', data.clubs)
         // console.log('names of countries', data.countries);
       })
-      .catch((err) => console.log("error", err));
+      .catch((err) => console.log("error while fetching data", err));
   }, []);
   // console.log('names of club of gael', clubs)
   console.log("names of clubs", clubs);
@@ -140,6 +168,13 @@ export default function SelectTeam() {
               ))}
             </div>
           </div>
+          {/* <input
+            className="search"
+            type="search"
+            placeholder="search team"
+            value={filterTeam}
+            onChange={handleSearch}
+          /> */}
           <div className="clubs-side">
             <p>Team 2</p>
             <input
@@ -171,17 +206,6 @@ export default function SelectTeam() {
             </div>
           </div>
         </div>
-        <div>
-          <div className="selected-countres">
-            {selectTeam1 && selectTeam2 && (
-              <p>
-                The selected teams are <b>{selectTeam1}</b> and{" "}
-                <b>{selectTeam2}</b>
-              </p>
-            )}
-          </div>
-        </div>
-
         <h3>Select Club</h3>
         <div className="clubs">
           <div className="clubs-side">
@@ -191,6 +215,13 @@ export default function SelectTeam() {
               type="number"
               placeholder="Enter score"
             />
+            {/* <input
+              type="search"
+              placeholder="Search team"
+              onChange={handleSearch()}
+              value={searchInput}
+              value={filterTeam}
+            /> */}
             <div
               className="selected-club"
             >
@@ -211,7 +242,6 @@ export default function SelectTeam() {
                 </div>
               ))}
             </div>
-            
           </div>
           <div className="clubs-side">
             <p>Team 2</p>
@@ -220,6 +250,10 @@ export default function SelectTeam() {
               type="number"
               placeholder="Enter score"
             />
+            {/* <input
+              type="search"
+              placeholder="Search team"
+            /> */}
             <div
               className="selected-club"
             >
@@ -271,7 +305,7 @@ export default function SelectTeam() {
         </div>
       </div>
       <button className="btn" onClick={handleClick}>
-        Click here
+        Go to cart
       </button>
     </div>
   );

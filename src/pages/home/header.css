@@ -35,11 +35,13 @@ h2 {
   }
 
   h2 {
-    color: red;
-    flex: 1;
+    width: 200px;
+    margin: 9px auto;
+    text-align: center;
+    
   }
 
   .about {
-    width: 100%;
+    display: none;
   }
 }

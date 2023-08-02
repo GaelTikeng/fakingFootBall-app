@@ -1,15 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./pages/pronostics/home/header";
+import Header from "./pages/home/header";
 import SelectTeam from "./components/teamsInput";
-import TeamCart from "./pages/pronostics/pronostics";
+import TeamCart from "./components/pronostics/pronostics";
 import { ContextProvider } from "./utiles/Context";
 
 function App() {
-  // const clubTeam1 = JSON.parse(localStorage.getItem('club1'));
-  // const clubTeam2 = JSON.parse(localStorage.getItem('club2'));
-  const teamCountry = JSON.parse(localStorage.getItem("teams"));
+  // const teamCountry = JSON.parse(localStorage.getItem("teams"));
   const pickedClub = JSON.parse(localStorage.getItem("pickedClub"));
   const scoreCountry1 = JSON.parse(localStorage.getItem("score1"));
   const scoreCountry2 = JSON.parse(localStorage.getItem("score2"));
@@ -20,7 +18,7 @@ function App() {
     <div className="App">
       <ContextProvider
         value={{
-          teamCountry,
+          // teamCountry,
           pickedClub,
           scoreCountry1,
           scoreCountry2,

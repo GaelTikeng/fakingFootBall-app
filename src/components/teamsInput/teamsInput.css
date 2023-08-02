@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(115deg, #131938b4, #04040eb2) ,url('C:\Users\HP\Desktop\rebasepractice\fakescores\public\assets\images\stadium3.jpg');
+  background-image: linear-gradient(115deg, #131938b4, #04040eb2) ,url('https://prodigits.co.uk/thumbs/wallpapers/p2ls/sports/51/789f493112173824.jpg');
   background-size: cover;
   /* width: 100%; */
   height: fit-content;
@@ -40,6 +40,7 @@ h3 {
 
 input {
   padding: 5px;
+  border-radius: 10px;
 }
 
 .selected-club {
@@ -62,6 +63,11 @@ input {
   margin: 0 auto;
 }
 
+.search {
+  height: 30px;
+  width: 250px;
+}
+
 .clubs-side {
   display: flex;
   flex-direction: column;
@@ -79,7 +85,7 @@ input {
   box-shadow: 1px 3px 5px #fff;
   cursor: pointer;
   width: 110px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 p {
