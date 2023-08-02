@@ -4,6 +4,8 @@ import "./teamsInput.css";
 
 export default function SelectTeam() {
   // const [searchInput, setSearchInput] = useState("");
+  const [displayClub1, setDisplayClub1] = useState({})
+  const [displayClub2, setDisplayClub2] =useState({})
   const [selectTeam1, setSelectTeam1] = useState({});
   const [selectTeam2, setSelectTeam2] = useState({});
   const [selectedClub1, setSelectedClub1] = useState(false);
@@ -47,6 +49,8 @@ export default function SelectTeam() {
     }
     pickedClub.club1 = club1;
     localStorage.setItem('pickedClub', JSON.stringify(pickedClub))
+    setDisplayClub1(club1)
+    setSelectedClub1(true)
   }
 
   const handleClub2 = (club2) => {
@@ -56,6 +60,8 @@ export default function SelectTeam() {
     }
     pickedClubs.club2 = club2;
     localStorage.setItem('pickedClub', JSON.stringify(pickedClubs));
+    setDisplayClub2(club2)
+    setSelectedClub2(true)
   };
 
   const handleChange1 = (event) => {
@@ -273,6 +279,23 @@ export default function SelectTeam() {
               ))}
             </div>
             
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            paddingTop: "10px",
+          }}
+        >
+          <div className="selected-clubs">
+            {selectedClub1 && selectedClub2 && (
+              <p>
+                The clubs selected are <b>{displayClub1.name}</b> and{" "}
+                <b>{displayClub2.name}</b>{" "}
+              </p>
+            )}
           </div>
         </div>
         
