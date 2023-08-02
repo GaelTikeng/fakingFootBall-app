@@ -1,4 +1,4 @@
-import React, { useContext, createRef, useEffect } from "react";
+import React, { useContext, createRef } from "react";
 import { createFileName, useScreenshot } from "use-react-screenshot";
 import './pronostics.css';
 import { Context } from "../../utiles/Context";
@@ -15,7 +15,7 @@ export default function TeamCart() {
   const teamCountry = JSON.parse(localStorage.getItem("teams"));
   const ref = createRef(null);
   const refference = createRef(null);
-  const [image, takeScreenShot] = useScreenshot({
+  const [takeScreenShot] = useScreenshot({
     type: "image/jpeg",
     quality: 1.0,
   });
@@ -35,9 +35,9 @@ export default function TeamCart() {
     takeScreenShot(refference.current).then(download);
   };
 
-  const handleClick = () => {
-    console.log("teamCountry", teamCountry);
-  };
+  // const handleClick = () => {
+  //   console.log("teamCountry", teamCountry);
+  // };
 
   return (
     <div
@@ -107,6 +107,7 @@ export default function TeamCart() {
                   background: "#131938b4",
                   height: "50px",
                 }}
+                alt="flag"
               />
               <p>{teamCountry.team2.country}</p>
             </div>
@@ -190,6 +191,7 @@ export default function TeamCart() {
                   width: "60px",
                   height: "50px",
                 }}
+                alt="flag"
               />
               <p style={{ width: "100px" }}>{pickedClub.club2.name}</p>
             </div>

@@ -3,20 +3,17 @@ import { useNavigate } from "react-router-dom";
 import "./teamsInput.css";
 
 export default function SelectTeam() {
-  const [searchInput, setSearchInput] = useState("");
-  // const [selectTeam1, setSelectTeam1] = useState(null);
-  // const [selectTeam2, setSelectTeam2] = useState(null);
-  const [selectedClub1, setSelectedClub1] = useState(null);
-  const [selectedClub2, setSelectedClub2] = useState(null);
+  // const [searchInput, setSearchInput] = useState("");
+  const [selectTeam1, setSelectTeam1] = useState({});
+  const [selectTeam2, setSelectTeam2] = useState({});
+  const [selectedClub1, setSelectedClub1] = useState(false);
+  const [selectedClub2, setSelectedClub2] = useState(false);
   const [scoreCountry1, setScoreCountry1] = useState("");
   const [scoreCountry2, setScoreCountry2] = useState("");
   const [scoreClub1, setScoreClub1] = useState("");
   const [scoreClub2, setScoreClub2] = useState("");
   const [clubs, setClubs] = useState([]);
-  const [alsoClubs, setAlsoClubs] = useState([]);
   const [countries, setCountries] = useState([]);
-  const [alsoCountries, setAlsoCountries] = useState([]);
-  const [filterTeam, setFilterTeam] = useState("");
   const navigate = useNavigate();
 
   const handleSelectTeam1 = (team1) => {
@@ -27,6 +24,8 @@ export default function SelectTeam() {
 
     teams.team1 = team1;
     localStorage.setItem('teams', JSON.stringify(teams));
+    setSelectedClub1(true)
+    setSelectTeam1(team1)
   };
 
   const handleSelectTeam2 = (team2) => {
@@ -36,6 +35,9 @@ export default function SelectTeam() {
     }
     teams.team2 = team2;
     localStorage.setItem('teams', JSON.stringify(teams));
+    console.log(team2)
+    setSelectedClub2(true)
+    setSelectTeam2(team2)
   };
 
   const handleClub1 = (club1) => {
@@ -66,32 +68,11 @@ export default function SelectTeam() {
 
   const handleChange3 = (e) => {
     setScoreClub1(e.target.value);
-    console.log(scoreClub1);
   };
 
   const handleChange4 = (e) => {
     setScoreClub2(e.target.value);
   };
-
-  // const handleSearch = (event) => {
-  //   // setSearchInput(event.target.value)
-  //   if (searchInput === '') {
-  //     setCountries(alsoCountries)
-  //   } else {
-  //     const filterElement = countries.filter(item => item.contry.toLowerCase().includes(searchInput));
-  //     setCountries(filterElement)
-  //   }
-  //   setFilterTeam(searchInput)
-    
-    
-
-  //   setSearchInput(e.target.value);
-  // }
-  // if (searchInput.length > 0) {
-  //   clubs.filter((club) => {
-  //     return club.name.march(searchInput);
-  //   });
-  // }
 
   const handleClick = () => {
     localStorage.setItem("score1", JSON.stringify(scoreCountry1));
@@ -123,9 +104,7 @@ export default function SelectTeam() {
       .then((response) => response.json())
       .then((data) => {
         setClubs(data.clubs);
-        setAlsoClubs(data.clubs);
         setCountries(data.countries);
-        setAlsoCountries(data.countries);
         // console.log('names of clubs', data.clubs)
         // console.log('names of countries', data.countries);
       })
@@ -206,6 +185,22 @@ export default function SelectTeam() {
             </div>
           </div>
         </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            paddingTop: "10px",
+          }}
+        >
+          <div className="selected-clubs">
+            {selectedClub1 && selectedClub2 && (
+              <p>
+                The teams selected are <b>{selectTeam1.country}</b> and{" "}
+                <b>{selectTeam2.country}</b>{" "}
+              </p>
+            )}
+          </div>
+        </div>
         <h3>Select Club</h3>
         <div className="clubs">
           <div className="clubs-side">
@@ -260,14 +255,7 @@ export default function SelectTeam() {
               {clubs.map((option, index) => (
                 <div onClick={() => handleClub2(option)}>
                   <img
-                    style={{
-                      wifth: "50px",
-                      height: "40px",
-                      cursor: "pointer",
-                      display: "flex",
-                      justifyContent: "center",
-                      margin: "0 auto",
-                    }}
+                    className="image"
                     key={index}
                     src={option.url}
                     alt="flag"
@@ -287,22 +275,7 @@ export default function SelectTeam() {
             
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            paddingTop: "10px",
-          }}
-        >
-          <div className="selected-clubs">
-            {selectedClub1 && selectedClub2 && (
-              <p>
-                The selected teams are <b>{selectedClub1}</b> and{" "}
-                <b>{selectedClub2}</b>{" "}
-              </p>
-            )}
-          </div>
-        </div>
+        
       </div>
       <button className="btn" onClick={handleClick}>
         Go to cart
