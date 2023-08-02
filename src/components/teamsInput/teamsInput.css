@@ -1,9 +1,20 @@
 body {
-  background-image: linear-gradient(115deg, #131938b4, #04040eb2) ,url('C:\Users\HP\Desktop\rebasepractice\fakescores\public\assets\images\stadium3.jpg');
+  background-image: linear-gradient(115deg, #131938b4, #04040eb2) ,url('https://prodigits.co.uk/thumbs/wallpapers/p2ls/sports/51/789f493112173824.jpg');
   background-size: cover;
   /* width: 100%; */
   height: fit-content;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.all-teams {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.first-h3 {
+  color: #fff;
+  text-align: center;
+  padding-top: 10px;
 }
 
 h3 {
@@ -20,6 +31,41 @@ h3 {
 .selected-countres,
 .selected-clubs {
   text-align: center;
+}
+
+.clubs {
+  display: flex;
+  justify-content: space-between;
+}
+
+input {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.selected-club {
+  color: #fff;
+  padding: 10px;
+  height: 500px;
+  width: 300px;
+  overflow: auto;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px #f2f2f2;
+  border: 1px solid #f2f2f2;
+}
+
+.image {
+  width: 50px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.search {
+  height: 30px;
+  width: 250px;
 }
 
 .clubs-side {
@@ -39,9 +85,46 @@ h3 {
   box-shadow: 1px 3px 5px #fff;
   cursor: pointer;
   width: 110px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 p {
   color: #fff;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .all-teams {
+    width: 96vw;
+  }
+
+  .clubs {
+    width: 96vw;
+
+    display: flex;
+    flex-direction: column ;
+  }
+
+  .clubs-side {
+    width: 100%;
+  }
+
+  .selected-club {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  input {
+    width: 93%;
+    margin: 0 auto;
+  }
+
+  .btn {
+    margin-top: 8px;
+  }
 }
